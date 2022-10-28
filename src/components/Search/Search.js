@@ -1,9 +1,11 @@
 import React from 'react'
+import './Search.css'
 
 export const Search = ({ value, setValue, action }) => {
   return (
-    <div>
-      <input type='text' placeholder="Search..." value={value} onChange={(event) => setValue(event.target.value)} />
+    <div className='searchContent'>
+      <input type='text' className='txt' placeholder="Search..." value={value} onChange={(event) => setValue(event.target.value)} />
+      <img src='/assets/search.png' className='imgSearch'/>
     </div>
   )
 }

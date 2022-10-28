@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Image } from './components/Image/Image';
+import { Search } from './components/Search/Search';
 import productsJSON from './products.json'
 
 const App = () => {
@@ -22,6 +23,9 @@ const App = () => {
   console.log(productsJSON.products);
   return (
     <div className="App">
+      <div className="search" >
+        <Search />
+      </div>
       {
         products.length ? (
           <table className='customTable' cellspacing="0" cellpadding="0">
@@ -34,7 +38,7 @@ const App = () => {
             <tbody>
               {
                 products.map(product => (
-                  <tr>
+                  <tr className='row'>
                     { 
                       heads.map(field => {
                         const value = product[field]
