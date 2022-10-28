@@ -1,23 +1,61 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { Image } from './components/Image/Image';
+import productsJSON from './products.json'
 
-function App() {
+const App = () => {
+  const [products, setProducts] = useState([])
+  const heads = ['code', 'position', 'quantity', 'image', 'price', 'description']
+
+  useEffect(() => {
+    (async () => await getProducts())()
+  }, [])
+  
+  const getProducts = async () => {
+    setProducts(productsJSON.products)
+  }
+
+  const currency = (value) => {
+    return `$ ${Number(value).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}` 
+  }
+
+  console.log(productsJSON.products);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        products.length ? (
+          <table className='customTable' cellspacing="0" cellpadding="0">
+            <thead className='head'>
+              <tr>
+                { heads.map(field => <th className='headField'>{field.toUpperCase()}</th>) }
+              </tr>
+            </thead>
+
+            <tbody>
+              {
+                products.map(product => (
+                  <tr>
+                    { 
+                      heads.map(field => {
+                        const value = product[field]
+                        return (
+                          <td className='field'>
+                            {
+                              field === 'price' ? currency(value)
+                                : field === 'image' ? <Image path={value}/>
+                                  : value
+                            }
+                          </td>
+                        )
+                      }) 
+                    }
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        ) : null
+      }
     </div>
   );
 }
