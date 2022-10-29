@@ -8,6 +8,22 @@
   table-layout: fixed;
 }
 
+@media (max-width: 900px) {
+  .App {
+    width: 95%;
+    padding: 0 10px;
+    margin: 0 auto;
+    overflow: scroll;
+    position: relative;
+  }
+
+  .search {
+    position: sticky;
+    left: 0;
+    top: 0;
+  }
+}
+
 .head {
   background: #ecf0f4;
 }
