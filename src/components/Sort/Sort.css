@@ -1,0 +1,26 @@
+.sort {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  margin-left: 5px;
+}
+
+.sort img {
+  width: 9px;
+  padding: 0;
+}
+
+.union {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.down {
+  transform: rotate(180deg);
+}
+
